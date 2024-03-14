@@ -1,0 +1,22 @@
+FROM debian:12.2
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS=yes
+
+RUN apt update && apt upgrade -y && \
+    apt install -y git build-essential cmake linux-perf bc autoconf automake && \ 
+    apt autoclean && \
+    git clone https://github.com/resurrecting-open-source-projects/stress.git && \
+    mkdir -p /cnuvem23/shared 
+
+# Change work directory to install stress
+WORKDIR /stress
+RUN ./autogen.sh && \ 
+    ./configure && \
+    make && \
+    make install
+
+# change work directory to root
+WORKDIR /cnuvem23
+
+RUN sh -c 'echo kernel.perf_event_paranoid=1 >> /etc/sysctl.conf'

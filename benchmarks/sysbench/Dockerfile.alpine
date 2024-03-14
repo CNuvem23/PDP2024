@@ -1,0 +1,7 @@
+FROM alpine:3.18
+RUN apk update && apk --no-cache add sysbench
+
+RUN mkdir cnuvem23/
+WORKDIR cnuvem23
+
+CMD /bin/sh

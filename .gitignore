@@ -1,0 +1,9 @@
+shared/output*
+shared/dind
+.*.swp
+.runtime*
+*.avi
+*.mkv
+chart/outputs
+*.DS_Store
+*.out

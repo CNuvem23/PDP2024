@@ -1,0 +1,19 @@
+FROM debian:12.1
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS=yes
+
+COPY benchmarks/iozone/etc/sources.list /etc/apt/
+RUN sed -i 's/^/#/' /etc/apt/sources.list.d/debian.sources
+
+RUN apt-get update -qq
+RUN apt upgrade -y
+
+#RUN apt-get install lynx wget vim nano net-tools -y
+RUN apt-get install -y iozone3 bc
+
+RUN mkdir cnuvem23/
+WORKDIR cnuvem23
+
+CMD /bin/sh
+

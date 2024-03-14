@@ -1,0 +1,16 @@
+FROM debian:12.1
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS=yes
+
+RUN apt-get update -qq
+RUN apt upgrade -y
+
+#RUN apt-get install lynx wget vim nano net-tools -y
+RUN apt-get install -y sysbench
+
+RUN mkdir cnuvem23/
+WORKDIR cnuvem23
+
+CMD /bin/sh
+

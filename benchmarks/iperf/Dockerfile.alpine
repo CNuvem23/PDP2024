@@ -1,0 +1,6 @@
+FROM alpine:3.18
+RUN apk update && apk --no-cache add iperf bc
+WORKDIR /cnuvem23
+COPY ./shared/run-benchmark-iperf.sh /cnuvem23/shared/
+EXPOSE 5001
+CMD ["sh", "/cnuvem23/shared/run-benchmark-iperf.sh"]
